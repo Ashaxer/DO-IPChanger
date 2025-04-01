@@ -1,0 +1,6 @@
+cloudflare==2.19.0
+python-dotenv==1.0.0
+pysocks
+requests==2.31.0
+Flask==2.2.2
+Werkzeug==2.2.2
