@@ -11,10 +11,11 @@ def check_ip_connectivity(ip_address, sleep_time):
     nodes_response = requests.get(nodes_url, headers={"Accept": "application/json"}).json()
     
     all_nodes = nodes_response.get("nodes", {})
-    nodes = [node for node, info in all_nodes.items() if info["location"][0].lower() == "ir"] # change == "ir" to your custom location if needed
+    nodes = [node for node, info in all_nodes.items() if info["location"][0].lower() == "ir"]
     
-    print(f"[INFO]Found {len(nodes)} nodes:\n[INFO]{'\n[INFO]'.join(nodes)}") 
-    
+    print(f"[INFO] Found {len(nodes)} nodes:")
+    print("\n".join(f"[INFO] {node}" for node in nodes))
+        
     headers = {'Accept': 'application/json'}
     success_count = 0
     total_tests = 4*len(nodes)
