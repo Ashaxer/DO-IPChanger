@@ -7,12 +7,19 @@ def check_ip_connectivity(ip_address, sleep_time):
     print(f'[INFO]Checking connectivity of {ip_address}')
 
     # List of Iran locations from which to test connectivity
-    iran_nodes = ['ir1.node.check-host.net', 'ir3.node.check-host.net', 'ir5.node.check-host.net', 'ir6.node.check-host.net']
+    nodes_url = "https://check-host.net/nodes/hosts"
+    nodes_response = requests.get(nodes_url, headers={"Accept": "application/json"}).json()
+    
+    all_nodes = nodes_response.get("nodes", {})
+    nodes = [node for node, info in all_nodes.items() if info["location"][0].lower() == "ir"] # change == "ir" to your custom location if needed
+    
+    print(f"[INFO]Found {len(nodes)} nodes:\n[INFO]{'\n[INFO]'.join(nodes)}") 
+    
     headers = {'Accept': 'application/json'}
     success_count = 0
-    total_tests = 4*len(iran_nodes)
+    total_tests = 4*len(nodes)
 
-    response = requests.get(f'{check_host_api_url}?host={ip_address}&node={iran_nodes[0]}&node={iran_nodes[1]}&node={iran_nodes[2]}&node={iran_nodes[3]}', headers=headers)
+    response = requests.get(f'{check_host_api_url}?host={ip_address}&{"&".join(f"node={node}" for node in nodes)}', headers=headers)
 
 
     if response.status_code == 200:
@@ -25,7 +32,7 @@ def check_ip_connectivity(ip_address, sleep_time):
                 print('[INFO]Waiting 15 seconds for next request')
                 time.sleep(int(sleep_time))
                 response2 = requests.get(f"https://check-host.net/check-result/{request_id}").json()
-                for node in iran_nodes:
+                for node in nodes:
                     try:
                         for res in response2[node][0]:
                             if res[0] == 'OK': success_count += 1
