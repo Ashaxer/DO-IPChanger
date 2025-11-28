@@ -77,25 +77,41 @@ wh_key = "" #CloudFlare Origin private key file path
 ```
 
 # Scheduling and Running the bots
+Before doing anything, lets setup a virtual enviroment inside your project folder (make sure you are inside DO-IPChanger folder):  
+```
+sudo apt install python3.11 python3.11-venv python3.11-dev
+python3.11 -m venv venv #if you want to use your custom venv name, you also need to manually update the cronjobs
+```
+
+To use the bot files, activate the venv and then install requirements:
+```
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+You can also install webhooks requirements using this command:
+```
+source venv/bin/activate
+pip install -r aiogram<3
+```
+
+
+You can use ```bash install.sh``` to install cronjobs for Webhooks or Checker.
+
+Don't forget to activate venv before running scripts!
+```
+source venv/bin/activate
+```
+
 ## TelegramBot IP Manager
-For running the Webhook Bot, run the webhook.py file
-
-You can add a cronjob to start the bot after each reboot:
-
-(Change the path to project)
-
-```shell
-@reboot screen -LdmS webhook sh -c 'cd /PATH/TO/PROJECT/ && /usr/bin/python3 webhook.py'
+For running the Webhook Bot, run the webhook.py file using python3.11
+```
+python3.11 -m webhook.py
 ```
 
 ## Auto Checker and Logger
-For running a single check operation, run the check.py file
-
-You can add a cronjob to run a check operation each 2 hours:
-
-(Change the path to project)
-
-```shell
-0 */2 * * * cd /PATH/TO/PROJECT/ && /usr/bin/python3 check.py
+For running a single check operation, run the check.py file using python3.11
+```
+python3.11 -m check.py
 ```
 
