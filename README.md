@@ -78,6 +78,12 @@ wh_key = "" #CloudFlare Origin private key file path
 
 # Scheduling and Running the bots
 Before doing anything, lets setup a virtual enviroment inside your project folder (make sure you are inside DO-IPChanger folder):  
+If coming from Ubuntu 24+ and you haven't added ```deadsnakes``` repo yet, run these:
+```
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt update
+```
+Then
 ```
 sudo apt install python3.11 python3.11-venv python3.11-dev
 python3.11 -m venv venv #if you want to use your custom venv name, you also need to manually update the cronjobs
