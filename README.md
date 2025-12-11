@@ -86,6 +86,11 @@ sudo apt update
 Then
 ```
 sudo apt install python3.11 python3.11-venv python3.11-dev
+```
+Clone this repo and navigate to it
+```
+git clone https://github.com/Ashaxer/DO-IPChanger.git
+cd DO-IPChanger
 python3.11 -m venv venv #if you want to use your custom venv name, you also need to manually update the cronjobs
 ```
 
