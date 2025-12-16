@@ -68,7 +68,7 @@ chat_id = "" #Telegram GroupID or ChannelID for sending logs.
 proxy = "" #Proxy if needed to connect servers Example: 'socks5h://localhost:40000'
 acceptable_connectivity = "" #Minimum precentage check-host.net result, set 0 to use default or use minus percent to use minus default percent #Exampel -15 means (Maximum result of 8.8.8.8 check - 15)
 wh_bot_token = "" #TelegramBot Token for managing the IPs
-wh_bot_admins = [] #Telegram UserIDs as admins
+wh_bot_admins = x,x,x #Telegram UserIDs as admins
 wh_ip_address = "" #webhook IP Address, Default empty for secure connection
 wh_url = "" #webhook domain:<HTTPS PORT>
 wh_secret_token = "" #webhook secret token
@@ -103,7 +103,7 @@ pip install -r requirements.txt
 You can also install webhooks requirements using this command:
 ```
 source venv/bin/activate
-pip install -r aiogram<3
+pip install -r "aiogram<3"
 ```
 
 
